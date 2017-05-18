@@ -84,6 +84,7 @@ Every package in Universe must have a `package.json` file which specifies the hi
 Currently, a package can specify one of two values for `.packagingVersion` either `2.0` or `3.0`; which version is declared
 will dictate which other files are required for the complete package as well as the schema(s) all the files must
 adhere to. Below is a snippet that represents a version `2.0` package.
+
 See [`repo/meta/schema/package-schema.json`](repo/meta/schema/package-schema.json) for the full json schema outlining
 what properties are available for each corresponding version of a package.
 
@@ -102,7 +103,7 @@ what properties are available for each corresponding version of a package.
 }
 ```
 
-For the first version of the package, add this line to the beginning of `preInstallNotes`: ```This DC/OS Service is currently EXPERIMENTAL. There may be bugs, incomplete features, incorrect documentation, or other discrepancies. Experimental packages should never be used in production!``` It will be removed once the package has been tested and used by the community. 
+For the first version of the package, add this line to the beginning of `preInstallNotes`: ```This DC/OS Service is currently in preview. There may be bugs, incomplete features, incorrect documentation, or other discrepancies. Preview packages should never be used in production!``` It will be removed once the package has been tested and used by the community.
 
 ###### `.minDcosReleaseVersion`
 |Packaging Version|   |
@@ -230,6 +231,10 @@ format of a Pip requirements file where each element in the array is a line in t
 This file contains all of the externally hosted resources (E.g. Docker images, HTTP objects and
 images) needed to install the application.
 
+See [`repo/meta/schema/v2-resource-schema.json`](repo/meta/schema/v2-resource-schema.json) and
+[`repo/meta/schema/v3-resource-schema.json`](repo/meta/schema/v3-resource-schema.json) for the full
+json schema outlining what properties are available for each corresponding version of a package.
+
 ```json
 {
   "images": {
@@ -332,12 +337,6 @@ Full Instructions:
 
   ```bash
   git clone https://github.com/<user>/universe.git /path/to/universe
-  ```
-
-2. Ensure that the `jsonschema` command line tool is installed:
-
-  ```bash
-  sudo pip install jsonschema
   ```
 
 3. Run the verification and build script:
